@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Callback Example</title>
+</head>
+<body>
+    <h1>SwiftUI Callback Example</h1>
+    <button onclick="triggerSuccess()">Trigger Success</button>
+    <button onclick="triggerFailure()">Trigger Failure</button>
+    
+    <script>
+        function triggerSuccess() {
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
+                // iOS callback
+                window.webkit.messageHandlers.callbackHandler.postMessage("success");
+            } else {
+                console.log("No native handler found for success");
+            }
+        }
+
+        function triggerFailure() {
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.callbackHandler) {
+                // iOS callback
+                window.webkit.messageHandlers.callbackHandler.postMessage("failure");
+            } else {
+                console.log("No native handler found for failure");
+            }
+        }
+    </script>
+</body>
+</html>
+
