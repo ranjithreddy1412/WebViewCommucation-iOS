@@ -41,7 +41,7 @@ struct WebContentView: View {
             }
             .sheet(isPresented: $showWebView) {
                 if let url = URL(string: "http://localhost:3000") {
-                    WebView(url: url, onClose: { data in
+                    WebViewTest(url: url, onClose: { data in
                         successMessage = data // Receive data when WebView is closed
                     })
                 }

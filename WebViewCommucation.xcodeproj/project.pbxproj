@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2AB94A652CE671910058419D /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB94A642CE671910058419D /* NetworkService.swift */; };
+		2AB94A812CEBD0620058419D /* WebView-iOS-SDK in Frameworks */ = {isa = PBXBuildFile; productRef = 2AB94A802CEBD0620058419D /* WebView-iOS-SDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AB94A812CEBD0620058419D /* WebView-iOS-SDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			);
 			name = WebViewCommucation;
 			packageProductDependencies = (
+				2AB94A802CEBD0620058419D /* WebView-iOS-SDK */,
 			);
 			productName = webViewCommucation;
 			productReference = 2A1AE59F2CDD3CF1004214AB /* WebViewCommucation.app */;
@@ -113,6 +116,9 @@
 			);
 			mainGroup = 2A1AE5962CDD3CF1004214AB;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				2AB94A7F2CEBD0620058419D /* XCRemoteSwiftPackageReference "WebView-iOS-SDK" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 2A1AE5A02CDD3CF1004214AB /* Products */;
 			projectDirPath = "";
@@ -344,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2AB94A7F2CEBD0620058419D /* XCRemoteSwiftPackageReference "WebView-iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ranjithreddy1412/WebView-iOS-SDK";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2AB94A802CEBD0620058419D /* WebView-iOS-SDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AB94A7F2CEBD0620058419D /* XCRemoteSwiftPackageReference "WebView-iOS-SDK" */;
+			productName = "WebView-iOS-SDK";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A1AE5972CDD3CF1004214AB /* Project object */;
 }

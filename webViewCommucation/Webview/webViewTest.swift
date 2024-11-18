@@ -7,20 +7,7 @@
 import SwiftUI
 import WebKit
 
-//struct WebView: UIViewRepresentable {
-//    let url: URL
-//
-//    func makeUIView(context: Context) -> WKWebView {
-//        return WKWebView()
-//    }
-//
-//    func updateUIView(_ uiView: WKWebView, context: Context) {
-//        let request = URLRequest(url: url)
-//        uiView.load(request)
-//    }
-//}
-
-struct WebView: UIViewRepresentable {
+struct WebViewTest: UIViewRepresentable {
     let url: URL
     var onClose: (String) -> Void
 
@@ -67,9 +54,9 @@ struct WebView: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {}
 
     class Coordinator: NSObject, WKNavigationDelegate {
-        var parent: WebView
+        var parent: WebViewTest
 
-        init(_ parent: WebView) {
+        init(_ parent: WebViewTest) {
             self.parent = parent
         }
 

@@ -13,9 +13,10 @@ struct webViewCommucationApp: App {
         WindowGroup {
             
 //             WebContentViewLocalHtml()
-//             SafariContentView()
+//            SafariContentView()
             
-             WebContentView()
+             //WebContentView()
+            ContentView()
                 .onOpenURL { url in
                     handleIncomingURL(url)
                 }
