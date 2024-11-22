@@ -9,17 +9,22 @@
 import SwiftUI
 import WebView_iOS_SDK
 
-struct ContentView: View {
+struct ContentView: View, WebViewMessageHandler {
     @State private var viewType: WebViewIOSSDK.ViewType?
     private let sdk = WebViewIOSSDK()
-    
+    @State private var receivedMessage: String = ""
+
     var body: some View {
         NavigationView {
             VStack(spacing: 20) {
                 Text("PBB Navigation using SDK Example")
                     .font(.title)
                     .padding()
-                
+
+                Text("Message from WebView: \(receivedMessage)")
+                    .foregroundColor(.blue)
+                    .padding()
+
                 NavigationLink(
                     destination: viewForType(viewType),
                     isActive: .constant(viewType != nil) // Trigger navigation when viewType is set
@@ -38,7 +43,8 @@ struct ContentView: View {
         if let type = type {
             switch type {
             case .web(let url):
-                WebView(url: url) // Display WebView in navigation
+                WebView(url: url, messageHandler: self, isDismissed: $viewType) // Display WebView in navigation
+                    .navigationBarHidden(true)
             default:
                 EmptyView() // Handle other types if necessary
             }
@@ -78,10 +84,17 @@ struct ContentView: View {
             }
         }
     }
-    
+
+    // MARK: - WebViewMessageHandler Implementation
+    func onMessageReceived(_ message: String) {
+        DispatchQueue.main.async {
+            receivedMessage = message
+            print("Message received from WebView: \(message)")
+        }
+    }
 }
 
-
+// Extend the ViewType to conform to Identifiable
 extension WebViewIOSSDK.ViewType: @retroactive Identifiable {
     public var id: URL {
         switch self {
