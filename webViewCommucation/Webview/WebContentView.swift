@@ -39,6 +39,14 @@ struct WebContentView: View {
             Button("PBB in WebView") {
                 showWebView = true
             }
+            .padding()
+            .background(Color.blue) // Button background color
+            .cornerRadius(12) // Corner radius
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.blue, lineWidth: 2) // Border color and width
+            )
+            .foregroundColor(.white)
             .sheet(isPresented: $showWebView) {
                 if let url = URL(string: "http://localhost:3000") {
                     WebViewTest(url: url, onClose: { data in

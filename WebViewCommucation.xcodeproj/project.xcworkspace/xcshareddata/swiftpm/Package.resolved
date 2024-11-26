@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/ranjithreddy1412/WebView-iOS-SDK",
       "state" : {
-        "revision" : "d80b736d8df010a1b265942f1d7fa8067e50ead9",
-        "version" : "1.0.5"
+        "revision" : "4437b11fe557fb75ffcc9ab4eb9a6865dcd7686b",
+        "version" : "1.0.6"
       }
     }
   ],

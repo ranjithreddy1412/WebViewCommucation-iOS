@@ -5,34 +5,45 @@
 //  Created by ranjith kumar reddy b perkampally on 11/7/24.
 //
 
-
 import SwiftUI
 
 struct SafariContentView: View {
-    @State private var showSuccessAlert = false
-    @State private var showFailureAlert = false
-    @State private var receivedParams: [String: String] = [:]
-
+    @Binding var accountNumber: String? // Binds to the app state
+    
     var body: some View {
         VStack {
+            Text("Welcome to Pay by Bank")
+                .font(.largeTitle)
+                .padding()
+            
+            if let accountNumber = accountNumber {
+                Text("Account Number: \(accountNumber)")
+                    .font(.title2)
+                    .foregroundColor(.green)
+                    .padding()
+            } else {
+                Text("No Account Number Yet. Please click the below button to add an account number.")
+                    .font(.title2)
+                    .foregroundColor(.red)
+                    .padding()
+            }
+            
             // Button to open Tink website in Safari
             Button("PBB in Safari") {
                 openInSafari(urlString: "http://localhost:3000")
             }
             .padding()
-        }
-        .onOpenURL { url in
-            handleURLCallback(url)
-        }
-        .alert(isPresented: $showSuccessAlert) {
-            Alert(title: Text("Success"), message: Text("Operation completed successfully!"), dismissButton: .default(Text("OK")))
-        }
-        .alert(isPresented: $showFailureAlert) {
-            Alert(title: Text("Failure"), message: Text("Operation failed."), dismissButton: .default(Text("OK")))
+            .background(Color.blue) // Button background color
+            .cornerRadius(12) // Corner radius
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.blue, lineWidth: 2) // Border color and width
+            )
+            .foregroundColor(.white)
         }
     }
-
-    // Function to open URL in Safari
+    
+    // Opens a URL in Safari
     private func openInSafari(urlString: String) {
         if let url = URL(string: urlString) {
             UIApplication.shared.open(url) { success in
@@ -46,36 +57,8 @@ struct SafariContentView: View {
             print("Invalid URL: \(urlString)")
         }
     }
-
-    // Function to handle URL callbacks (success or failure)
-    private func handleURLCallback(_ url: URL) {
-        // Check if the URL matches your success or failure callback
-        if url.absoluteString == "myapp://success" {
-            showSuccessAlert = true
-            print("Success callback received from Safari.")
-        } else if url.absoluteString == "myapp://failure" {
-            showFailureAlert = true
-            print("Failure callback received from Safari.")
-        }
-    }
-    
-    func handleDeepLink(url: URL) {
-            guard let components = URLComponents(url: url, resolvingAgainstBaseURL: true) else {
-                return
-            }
-
-            var params: [String: String] = [:]
-            components.queryItems?.forEach { item in
-                params[item.name] = item.value
-            }
-
-            receivedParams = params
-            // You can now pass `receivedParams` to other views or perform actions
-            print("Deep link received with parameters:", params)
-        }
-    }
-
-#Preview {
-    SafariContentView()
 }
 
+#Preview {
+    SafariContentView(accountNumber: .constant("4567"))
+}
